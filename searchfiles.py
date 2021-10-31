@@ -7,7 +7,7 @@ def searchingForFiles(files):
 	fileNames = []
 
 	for file in files:
-		if file[-4:] == '.txt':
+		if file[-4:] == '.txt' and file[-7:] != 'Ips.txt':
 			fileNames.append(file)
 	return fileNames
 
