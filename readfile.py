@@ -2,10 +2,9 @@
 # Author: @juanmafe.
 # GPLv3 2021.
 
-dictionary = {}
-
 def readingIpFile(file):
 
+	dictionary = {}
 	fileToRead = open(file)
 
 	for line in fileToRead:
@@ -25,6 +24,7 @@ def readingIpFile(file):
 
 def readingRawFile(file):
 
+	dictionary = {}
 	fileToRead = open(file)
 
 	for line in fileToRead:
@@ -32,7 +32,12 @@ def readingRawFile(file):
 
 		lineReplaced = line.replace(' ','')
 		lineSplitted = lineReplaced.split(":")
-		dictionary[lineSplitted[0]] = int(lineSplitted[1])
+
+		if lineSplitted[0] in dictionary and dictionary.get(lineSplitted[0]) < int(lineSplitted[1]):
+			dictionary.update({lineSplitted[0] : int(lineSplitted[1])})
+
+		if not lineSplitted[0] in dictionary:
+			dictionary[lineSplitted[0]] = int(lineSplitted[1])
 
 	fileToRead.close
 	return dictionary
