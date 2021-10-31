@@ -2,6 +2,7 @@
 # Author: @juanmafe.
 # GPLv3 2021.
 
+import os
 from datetime import datetime
 from readfile import readingIpFile
 from writefile import writtingFile
@@ -13,9 +14,10 @@ fileToWrite = "ips-" + str(datetime.now().time()) + ".txt"
 
 def collectingIps(dirPath):
 
-	dictionaryRaw = readingIpFile(fileToRead)
-	writtingFile(sortingReverse(dictionaryRaw), dirPath + fileToWrite, False)
+	if (os.path.exists(fileToRead)):
+		dictionaryRaw = readingIpFile(fileToRead)
+		writtingFile(sortingReverse(dictionaryRaw), dirPath + fileToWrite, False)
 
-	print("New nodes found: " + str(len(dictionaryRaw)))
+		print("New nodes found: " + str(len(dictionaryRaw)))
 
 #EOF
